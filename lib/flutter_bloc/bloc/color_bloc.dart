@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'color_event.dart';
@@ -13,6 +14,12 @@ class ColorBloc extends Bloc<ColorEvent, ColorState> {
   Stream<ColorState> mapEventToState(
     ColorEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    yield event is ToAmber
+        ? ColorAmber()
+        : event is ToLightBlue
+            ? ColorLightBlue()
+            : event is ToRed
+                ? ColorRed()
+                : ColorInitial();
   }
 }
